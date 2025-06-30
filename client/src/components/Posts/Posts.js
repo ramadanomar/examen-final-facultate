@@ -97,7 +97,6 @@ const Posts = () => {
         <p>Share your thoughts with the world</p>
       </div>
 
-      {/* Create Post Form */}
       <div className="create-post-form">
         <h3>Create New Post</h3>
         <form onSubmit={handleCreatePost}>
@@ -122,7 +121,6 @@ const Posts = () => {
         {error && <div className="error-message">{error}</div>}
       </div>
 
-      {/* Posts List */}
       <div className="posts-list">
         {posts.length === 0 ? (
           <div className="no-posts">

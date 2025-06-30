@@ -32,7 +32,7 @@ const Subscriptions = () => {
   useEffect(() => {
     const searchSuccessListener = globalState.subscriptions.emitter.addListener(
       "SUBSCRIPTION_SEARCH_SUCCESS",
-      (data) => {
+      () => {
         setSubscriptionData(globalState.subscriptions.subscriptions);
         setPagination(globalState.subscriptions.pagination || {});
         setIsLoading(false);
@@ -119,7 +119,6 @@ const Subscriptions = () => {
           </div>
         </div>
 
-        {/* Sort and Items per page */}
         <div className="controls-row">
           <div className="sort-section">
             <div className="sort-group">
@@ -164,10 +163,8 @@ const Subscriptions = () => {
         </div>
       </div>
 
-      {/* Loading indicator */}
       {isLoading && <div className="loading">Loading...</div>}
 
-      {/* Subscription list */}
       {!isLoading && (
         <>
           <UserCardList
@@ -176,7 +173,6 @@ const Subscriptions = () => {
             }))}
           />
 
-          {/* Pagination */}
           {pagination.totalPages > 1 && (
             <Paginator
               currentPage={pagination.currentPage}
@@ -187,7 +183,6 @@ const Subscriptions = () => {
             />
           )}
 
-          {/* Results info */}
           <div className="results-info">
             {pagination.totalCount > 0 ? (
               <p>
