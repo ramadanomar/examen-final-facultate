@@ -68,11 +68,9 @@ const getSubscriptions = async (req, res, next) => {
       filterBy = "name",
     } = req.query;
 
-    // Pagination
     const offset = (parseInt(page) - 1) * parseInt(limit);
     const pageLimit = parseInt(limit);
 
-    // Validation
     const validSortBy = ["name", "email"];
     const validSortOrder = ["ASC", "DESC"];
     const validFilterBy = ["name", "email"];
@@ -95,12 +93,10 @@ const getSubscriptions = async (req, res, next) => {
         .json({ message: "Invalid filterBy parameter. Use name or email." });
     }
 
-    // Build where clause for filtering
     const whereClause = {
       subscriberId: req.user.id,
     };
 
-    // Build include with filtering
     const includeClause = {
       model: models.User,
       as: "subscribed",
@@ -108,14 +104,12 @@ const getSubscriptions = async (req, res, next) => {
       where: {},
     };
 
-    // Add filter condition if provided
     if (filter && filter.trim() !== "") {
       includeClause.where[filterBy] = {
         [models.sequelize.Sequelize.Op.like]: `%${filter.trim()}%`,
       };
     }
 
-    // Get total count for pagination
     const totalCount = await models.Subscription.count({
       where: whereClause,
       include: [
@@ -127,7 +121,6 @@ const getSubscriptions = async (req, res, next) => {
       ],
     });
 
-    // Get paginated results
     const subscriptions = await models.Subscription.findAll({
       where: whereClause,
       attributes: ["id"],

@@ -71,7 +71,6 @@ const deletePost = async (req, res, next) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    // Security check: ensure user owns the post
     if (post.userId !== userId) {
       return res
         .status(403)
