@@ -1,0 +1,147 @@
+.subscriptions-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Controls Section */
+.subscriptions-controls {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-section {
+  margin-bottom: 15px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: #333;
+  min-width: 70px;
+}
+
+.filter-select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filter-input {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.sort-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.sort-section label {
+  font-weight: 500;
+  color: #333;
+}
+
+.sort-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.sort-btn:hover {
+  background: #f8f9fa;
+}
+
+.sort-btn.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.items-per-page {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.items-per-page label {
+  font-weight: 500;
+  color: #333;
+}
+
+.items-per-page select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: #666;
+}
+
+.results-info {
+  margin-top: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .subscriptions-controls {
+    padding: 15px;
+  }
+
+  .controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-input {
+    min-width: auto;
+  }
+
+  .sort-section {
+    justify-content: center;
+  }
+
+  .items-per-page {
+    justify-content: center;
+  }
+}
