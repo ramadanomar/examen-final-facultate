@@ -141,7 +141,7 @@ const Posts = () => {
             </div>
           ) : (
             posts.map((post) => (
-              <div key={`my-${post.id}`} className="post-item">
+              <div key={`my-${post.id}`} className="post-item my-post">
                 <div className="post-content">
                   <p>{post.content}</p>
                 </div>
