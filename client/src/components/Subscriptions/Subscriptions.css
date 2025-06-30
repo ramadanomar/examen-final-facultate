@@ -56,33 +56,30 @@
 
 .sort-section {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
 }
 
-.sort-section label {
+.sort-group {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.sort-group label {
   font-weight: 500;
   color: #333;
+  white-space: nowrap;
 }
 
-.sort-btn {
-  padding: 6px 12px;
+.sort-select {
+  padding: 6px 8px;
   border: 1px solid #ddd;
-  background: white;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 14px;
-  transition: all 0.2s;
-}
-
-.sort-btn:hover {
-  background: #f8f9fa;
-}
-
-.sort-btn.active {
-  background: #007bff;
-  color: white;
-  border-color: #007bff;
+  background: white;
+  cursor: pointer;
+  min-width: 100px;
 }
 
 .items-per-page {
@@ -139,6 +136,11 @@
 
   .sort-section {
     justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .sort-group {
+    min-width: 140px;
   }
 
   .items-per-page {

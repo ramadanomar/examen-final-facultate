@@ -63,26 +63,27 @@ const Subscriptions = () => {
 
   const handleItemsPerPageChange = (newLimit) => {
     setItemsPerPage(newLimit);
-    setCurrentPage(1); // Reset to first page when changing items per page
+    setCurrentPage(1);
   };
 
-  const handleSortChange = (field) => {
-    if (field === sortBy) {
-      setSortOrder(sortOrder === "ASC" ? "DESC" : "ASC");
-    } else {
-      setSortBy(field);
-      setSortOrder("ASC");
-    }
+  const handleSortByChange = (e) => {
+    setSortBy(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleSortOrderChange = (e) => {
+    setSortOrder(e.target.value);
+    setCurrentPage(1);
   };
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
-    setCurrentPage(1); // Reset to first page when filtering
+    setCurrentPage(1);
   };
 
   const handleFilterByChange = (e) => {
     setFilterBy(e.target.value);
-    setCurrentPage(1); // Reset to first page when changing filter field
+    setCurrentPage(1);
   };
 
   return (
@@ -121,19 +122,30 @@ const Subscriptions = () => {
         {/* Sort and Items per page */}
         <div className="controls-row">
           <div className="sort-section">
-            <label>Sort by:</label>
-            <button
-              className={`sort-btn ${sortBy === "name" ? "active" : ""}`}
-              onClick={() => handleSortChange("name")}
-            >
-              Name {sortBy === "name" && (sortOrder === "ASC" ? "↑" : "↓")}
-            </button>
-            <button
-              className={`sort-btn ${sortBy === "email" ? "active" : ""}`}
-              onClick={() => handleSortChange("email")}
-            >
-              Email {sortBy === "email" && (sortOrder === "ASC" ? "↑" : "↓")}
-            </button>
+            <div className="sort-group">
+              <label htmlFor="sortBy">Sort by:</label>
+              <select
+                id="sortBy"
+                value={sortBy}
+                onChange={handleSortByChange}
+                className="sort-select"
+              >
+                <option value="name">Name</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+            <div className="sort-group">
+              <label htmlFor="sortOrder">Order:</label>
+              <select
+                id="sortOrder"
+                value={sortOrder}
+                onChange={handleSortOrderChange}
+                className="sort-select"
+              >
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+              </select>
+            </div>
           </div>
 
           <div className="items-per-page">
