@@ -16,6 +16,7 @@ apiRouter.delete(
 );
 
 apiRouter.get("/posts", controllers.post.getUserPosts);
+apiRouter.get("/posts/feed", controllers.post.getSubscriptionFeed);
 apiRouter.post("/posts", controllers.post.createPost);
 apiRouter.delete("/posts/:postId", controllers.post.deletePost);
 

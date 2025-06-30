@@ -5,6 +5,7 @@ class PostStore {
   constructor() {
     this.emitter = new EventEmitter();
     this.posts = [];
+    this.feedPosts = [];
   }
 
   async createPost(state, content) {
@@ -53,6 +54,27 @@ class PostStore {
     }
   }
 
+  async getSubscriptionFeed(state) {
+    try {
+      const response = await fetch(`${SERVER}/api/posts/feed`, {
+        headers: {
+          Authorization: `Bearer ${state.currentUser.data.token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch subscription feed");
+      }
+
+      const data = await response.json();
+      this.feedPosts = data.posts;
+      this.emitter.emit("FEED_FETCH_SUCCESS");
+    } catch (err) {
+      console.warn("Error fetching subscription feed:", err);
+      this.emitter.emit("FEED_FETCH_ERROR", err);
+    }
+  }
+
   async deletePost(state, postId) {
     try {
       const response = await fetch(`${SERVER}/api/posts/${postId}`, {
@@ -78,6 +100,7 @@ class PostStore {
 
   clearPosts() {
     this.posts = [];
+    this.feedPosts = [];
     this.emitter.emit("POSTS_CLEARED");
   }
 }

@@ -90,8 +90,48 @@ const deletePost = async (req, res, next) => {
   }
 };
 
+const getSubscriptionFeed = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+
+    const subscriptions = await models.Subscription.findAll({
+      where: {
+        subscriberId: userId,
+      },
+      attributes: ["subscribedId"],
+    });
+
+    const subscribedUserIds = subscriptions.map((sub) => sub.subscribedId);
+
+    if (subscribedUserIds.length === 0) {
+      return res.status(200).json({ posts: [] });
+    }
+
+    const posts = await models.Post.findAll({
+      where: {
+        userId: {
+          [models.sequelize.Sequelize.Op.in]: subscribedUserIds,
+        },
+      },
+      include: [
+        {
+          model: models.User,
+          as: "author",
+          attributes: ["id", "username", "name", "email"],
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.status(200).json({ posts });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   createPost,
   getUserPosts,
   deletePost,
+  getSubscriptionFeed,
 };

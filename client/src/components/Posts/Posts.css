@@ -14,7 +14,6 @@
   margin-bottom: 30px;
 }
 
-/* Create Post Form */
 .create-post-form {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
@@ -87,7 +86,18 @@
   font-size: 14px;
 }
 
-/* Posts List */
+.posts-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
+  font-size: 18px;
+}
+
 .posts-list {
   display: flex;
   flex-direction: column;
@@ -145,6 +155,28 @@
 
 .delete-button:hover {
   background-color: #c82333;
+}
+
+.subscription-post {
+  background: #f8f9fc;
+  border-left: 4px solid #007bff;
+}
+
+.post-header {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.post-author {
+  font-weight: bold;
+  color: #007bff;
+  margin-right: 8px;
+}
+
+.post-author-name {
+  color: #666;
+  font-size: 14px;
 }
 
 /* Responsive design */
